@@ -18,4 +18,24 @@ public class PositionService implements IPositionService {
 		return positionRepository.getAllPositions();
 	}
 
+	@Override
+	public Position getPositionById(int id) {
+		return positionRepository.getPositionById(id);
+	}
+
+	@Override
+	public void createPosition(Position position) {
+		positionRepository.createPosition(position);
+	}
+
+	@Override
+	public void updatePosition(Position position) {
+		positionRepository.updatePosition(position);
+	}
+
+	@Override
+	public void deletePosition(int id) {
+		positionRepository.deletePosition(id);
+	}
+
 }

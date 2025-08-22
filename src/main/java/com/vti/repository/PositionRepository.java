@@ -35,4 +35,79 @@ public class PositionRepository implements IPositionRepository {
 		}
 	}
 
+	@Override
+	public Position getPositionById(int id) {
+		Session session = null;
+
+		try {
+			session = hibernateUtils.openSession();
+
+			Position position = session.get(Position.class, id);
+			return position;
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void createPosition(Position position) {
+		Session session = null;
+
+		try {
+			session = hibernateUtils.openSession();
+
+			session.beginTransaction();
+
+			session.save(position);
+
+			session.getTransaction().commit();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void updatePosition(Position position) {
+		Session session = null;
+
+		try {
+			session = hibernateUtils.openSession();
+
+			session.beginTransaction();
+
+			session.update(position);
+
+			session.getTransaction().commit();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void deletePosition(int id) {
+		Session session = null;
+
+		try {
+			session = hibernateUtils.openSession();
+
+			session.beginTransaction();
+
+			Position position = session.load(Position.class, id);
+
+			session.delete(position);
+
+			session.getTransaction().commit();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
 }
